@@ -1,44 +1,30 @@
-import { Map, Marker, ZoomControl } from "pigeon-maps";
-import { useState } from "react";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import type { NextPage } from "next";
+import NavBar from "../components/NavBar";
 
-import { osm } from "pigeon-maps/providers";
-
-export default function MyMap() {
-    const [state, setState] = useState<[number, number]>([50.879, 4.6997]);
-
-    const [hue, setHue] = useState(0);
-    const color = `hsl(${hue % 360}deg 39% 70%)`;
-
+const Home: NextPage = () => {
     return (
-        <div>
-            <Map
-                provider={osm}
-                height={200}
-                defaultCenter={state}
-                defaultZoom={11}
-                onClick={(e) => console.log(e)}
-            >
-                <ZoomControl />
-
-                <Marker
-                    width={50}
-                    anchor={[50.879, 4.6997]}
-                    color={color}
-                    onClick={(e) => {
-                        console.log(e);
-                        setHue(hue + 20);
+        <>
+            <NavBar />
+            <Container maxWidth="lg">
+                <Box
+                    sx={{
+                        my: 4,
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}
-                />
-                <Marker
-                    width={50}
-                    anchor={[40.879, 14.6997]}
-                    color={color}
-                    onClick={(e) => {
-                        console.log(e);
-                        setHue(hue + 20);
-                    }}
-                />
-            </Map>
-        </div>
+                >
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        MUI v5 + Next.js with TypeScript example
+                    </Typography>
+                </Box>
+            </Container>
+        </>
     );
-}
+};
+
+export default Home;
